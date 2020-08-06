@@ -18,6 +18,20 @@ function DB__execute($sql) {
     return mysqli_query($config['dbConn'], $sql);
 }
 
+function DB__insert($sql) {
+    global $config;
+    DB__execute($sql);
+    return mysqli_insert_id($config['dbConn']);
+}
+
+function DB__update($sql) {
+    DB__execute($sql);
+}
+
+function DB__delete($sql) {
+    DB__execute($sql);
+}
+
 function DB__getDBRows($sql) {
     $rs = DB__execute($sql);
 

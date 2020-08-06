@@ -1,0 +1,19 @@
+.top-bar {
+    height: 100px;
+    background-color:black;
+    color:white;
+}
+
+.top-bar .logo {
+    font-size:2rem;
+}
+
+.top-bar .menu-box-1 > ul > li > a {
+    padding:0 10px;
+    font-weight: bold;
+}
+
+.top-bar .menu-box-1 > ul > li:hover > a {
+    background-color:white;
+    color:black;
+}

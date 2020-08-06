@@ -26,6 +26,41 @@ a {
     margin-right: auto;
 }
 
+.img-box > img {
+    width:100%;
+    display: block;
+}
+
+.height-100p {
+    height:100%;
+}
+
+.margin-top-30 {
+    margin-top:30px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+/* flex 관련 */
+
+.flex {
+    display: flex;
+}
+
+.flex-ai-c {
+    align-items: center;
+}
+
+.flex-jc-c {
+    justify-content: center;
+}
+
+.flex-jc-sb {
+    justify-content: space-between;
+}
+
 /* 테이블 관련 */
 .table-box>table {
     width: 100%;
@@ -48,7 +83,7 @@ a {
 
 /* 버튼관련 */
 .btn {
-    padding:15px;
+    padding:5px 15px;
     display: inline-flex;
     font-weight: bold;
     border-radius: 10px;
@@ -56,13 +91,18 @@ a {
     border: 0;
     cursor: pointer;
     background-color: #3D94F6;
-    background-image: linear-gradient(to bottom, #3D94F6, #1E62D0);
     color: #FFFFFF;
     text-shadow: 1px 1px 20px #000000;
-    border: solid #337FED 1px;
 }
 
 .btn:hover {
     background-color: #1E62D0;
-    background-image: linear-gradient(to bottom, #1E62D0, #3D94F6);
+}
+
+.btn-success {
+    background-color: green;
+}
+
+.btn-danger {
+    background-color: red;
 }
