@@ -25,7 +25,23 @@ class ArticleService {
         return ArticleDao::modifyBoard($args);
     }
 
+    public static function writeArticle($args) : int {
+        return ArticleDao::writeArticle($args);
+    }
+
+    public static function getDisplayStatusName(int $displayStatus) : string {
+        if ( $displayStatus == 1 ) {
+            return '노출';
+        }
+
+        return '미노출';
+    }
+
     public static function getForPrintListData($args) {
+        if ( isE($args, 'displayStatus') == false ) {
+            $args['displayStatus'] = 1;
+        }
+
         $totalCount = ArticleDao::getForPrintListArticlesCount($args);
         $itemsInAPage = 5;
         $page = getArrValue($args, 'page', 1);
