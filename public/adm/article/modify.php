@@ -5,20 +5,22 @@ $config['needToLogin'] = false;
 // 관리자 페이지들을 위한 공통 작업
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../init/adm.php';
 
-$pageTitle = '게시물 작성';
+$pageTitle = '게시물 수정';
 // 관리자 페이지 공통 상단
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../part/adm/head.php';
 
 $boards = ArticleService::getForPrintBoards();
+$article = ArticleService::getArticleById($_REQUEST['id']);
+$displayStatusNames = ArticleService::getDisplayStatusNames();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../part/toastUiEditor.php';
 ?>
 
 <script>
-var ArticleWriteForm__submitDone = false;
+var ArticleModifyForm__submitDone = false;
 
-function ArticleWriteForm__submit(form) {
-    if ( ArticleWriteForm__submitDone ) {
+function ArticleModifyForm__submit(form) {
+    if ( ArticleModifyForm__submitDone ) {
         alert('처리중입니다.');
         return;
     }
@@ -45,11 +47,12 @@ function ArticleWriteForm__submit(form) {
     form.body.value = body;
 
     form.submit();
-    ArticleWriteForm__submitDone = true;
+    ArticleModifyForm__submitDone = true;
 }
 
 </script>
-<form class="con table-box form1" action="doWrite.php" method="POST" onsubmit="ArticleWriteForm__submit(this); return false;">
+<form class="con table-box form1" action="doModify.php" method="POST" onsubmit="ArticleModifyForm__submit(this); return false;">
+    <input type="hidden" name="id" value="<?=$article['id']?>">
     <input type="hidden" name="body">
     <table>
         <colgroup>
@@ -57,12 +60,30 @@ function ArticleWriteForm__submit(form) {
         </colgroup>
         <tbody>
             <tr>
+                <th>노출여부</th>
+                <td>
+                    <div class="form-control">
+                        <select name="displayStatus">
+                            <?php foreach ( $displayStatusNames as $displayStatus => $displayStatusName ) { ?>
+                            <?php
+                            $selected = $article['displayStatus'] == $displayStatus ? 'selected' : '';
+                            ?>
+                            <option <?=$selected?> value="<?=$displayStatus?>"><?=$displayStatusName?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
                 <th>게시판</th>
                 <td>
                     <div class="form-control">
                         <select name="boardId">
                             <?php foreach ( $boards as $board ) { ?>
-                            <option value="<?=$board['id']?>"><?=$board['name']?></option>
+                            <?php
+                            $selected = $article['boardId'] == $board['id'] ? 'selected' : '';
+                            ?>
+                            <option <?=$selected?> value="<?=$board['id']?>"><?=$board['name']?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -72,7 +93,7 @@ function ArticleWriteForm__submit(form) {
                 <th>제목</th>
                 <td>
                     <div class="form-control">
-                        <input type="text" name="title" placeholder="제목" value="">
+                        <input type="text" name="title" placeholder="제목" value="<?=$article['title']?>">
                     </div>
                 </td>
             </tr>
@@ -80,16 +101,16 @@ function ArticleWriteForm__submit(form) {
                 <th>본문</th>
                 <td>
                     <div class="form-control">
-                        <script type="text/x-template"></script>
+                        <script type="text/x-template"><?=$article['body']?></script>
                         <div class="toast-editor"></div>
                     </div>
                 </td>
             </tr>
             <tr>
-                <th>작성</th>
+                <th>수정</th>
                 <td>
                     <div class="form-control">
-                        <button type="submit" class="btn btn-primary">작성</button>
+                        <button type="submit" class="btn btn-primary">수정</button>
                     </div>
                 </td>
             </tr>
