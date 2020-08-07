@@ -23,7 +23,6 @@ loginPw = 'admin',
 `name` = '관리자',
 `nickname` = '관리자';
 
-
 CREATE TABLE `board` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, # 번호
     regDate DATETIME NOT NULL, # 생성날짜
@@ -31,7 +30,6 @@ CREATE TABLE `board` (
     `name` CHAR(100) NOT NULL, # 게시판 이름
     `code` CHAR(20) NOT NULL # 게시판 코드
 );
-
 
 # 관리자 회원 생성
 INSERT INTO `board`
@@ -43,16 +41,17 @@ updateDate = NOW(),
 CREATE TABLE `article` (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, # 번호
     regDate DATETIME NOT NULL, # 생성날짜
+    parentId INT(10) UNSIGNED NOT NULL,
     updateDate DATETIME NOT NULL, # 수정날짜
     boardId INT(10) UNSIGNED NOT NULL, # 게시판 ID
     memberId INT(10) UNSIGNED NOT NULL, # 작성자 ID
+    `title` CHAR(100) NOT NULL, # 제목
     `body` TEXT NOT NULL, # 내용
-    `replyBody` TEXT NOT NULL, # 응답내용
     displayStatus TINYINT(1) UNSIGNED NOT NULL, # 노출상태
     delStatus TINYINT(1) UNSIGNED NOT NULL, # 삭제상태
     delDate DATETIME NOT NULL, # 삭제날짜
-    typeCode CHAR(20) NOT NULL, # 1차 카테고리
-    type2Code CHAR(20) NOT NULL, # 2차 카테고리
+    cateCode CHAR(20) NOT NULL, # 1차 카테고리
+    cate2Code CHAR(20) NOT NULL, # 2차 카테고리
     readStatus TINYINT(1) UNSIGNED NOT NULL, # 수신자의 읽기 상태
     readDate DATETIME NOT NULL, # 수신자의 읽은 날짜
     completeStatus TINYINT(1) UNSIGNED NOT NULL, # 완료상태
@@ -63,3 +62,183 @@ CREATE TABLE `article` (
     writerSnsType CHAR(20) NOT NULL, # 작성자 SNS 타입
     writerSnsId CHAR(20) NOT NULL # 작성자 SNS ID
 );
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';
+
+# 게시물 생성
+INSERT INTO `article`
+SET regDate = NOW(),
+updateDate = NOW(),
+boardId = 1,
+memberId = 1,
+displayStatus = 1,
+title = '제목1',
+`body` = '내용1';

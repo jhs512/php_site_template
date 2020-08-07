@@ -54,9 +54,97 @@ function DB__getDBRow($sql) {
     return [];
 }
 
+function DB__getDBRowIntValue($sql, $default) : int {
+    $row = DB__getDBRow($sql);
+
+    if ( empty($row) ) {
+        return $default;
+    }
+
+    foreach ( $row as $val ) {
+        return $val;
+    }
+}
+
+function DB__getDBRowStringValue($sql, $default) : string {
+    $row = DB__getDBRow($sql);
+
+    if ( empty($row) ) {
+        return $default;
+    }
+
+    foreach ( $row as $val ) {
+        return $val;
+    }
+}
+
 function filterSqlInjection(&$args) {
     global $config;
     foreach ( $args as $key => $val ) {
         $args[$key] = mysqli_real_escape_string($config['dbConn'], $val);
     }
+}
+
+function getArrValue(&$arr, $key, $default) {
+    if ( isset($arr[$key]) ) {
+        return $arr[$key];
+    }
+
+    return $default;
+}
+
+function getQueryStringFromParam($params) : string {
+    $queryStr = '';
+
+    foreach ( $params as $key => $val ) {
+        if ( $queryStr ) {
+            $queryStr .= '&';
+        }
+        $queryStr .= $key . '=' . $val;
+    }
+
+    return $queryStr;
+}
+
+function getNewUri(string $url, string $paramKey, string $paramValue) {
+    $urlInfo = getUrlInfo($url);
+
+    $urlInfo['queryParams'][$paramKey] = $paramValue;
+
+    return $urlInfo['url'] . '?' . getQueryStringFromParam($urlInfo['queryParams']);
+}
+
+function getUrlInfo(string $url) {
+    if ( strpos($url, '?') === false ) {
+        $url .= "?";
+    }
+    
+    list($url, $queryStr) = explode('?', $url);
+
+    $queryStrBtis = explode('&', $queryStr);
+    $queryParams = [];
+
+    foreach ( $queryStrBtis as $paramStr ) {
+        $paramStrBits = explode('=', $paramStr);
+
+        $key = $paramStrBits[0];
+        if ( $key ) {
+            $value = '';
+            if ( isset($paramStrBits[1]) ) {
+                $value = $paramStrBits[1];
+            }
+            $queryParams[$key] = $value;
+        }
+    }
+    
+    $info = [];
+    $info['url'] = $url;
+    $info['queryStr'] = $queryStr;
+    $info['queryParams'] = $queryParams;
+
+    return $info;
+}
+
+function isE(&$arr, $key) {
+    return isset($arr[$key]) and !empty($arr[$key]) ;
 }

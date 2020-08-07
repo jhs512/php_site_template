@@ -74,12 +74,13 @@ a {
 }
 
 /* 폼 관련 */
-.form1 .form-control>input {
+.form1 .form-control>input,
+.form1 .form-control>select {
     width: 100%;
     display: block;
     box-sizing: border-box;
     padding: 5px;
-}
+} 
 
 /* 버튼관련 */
 .btn {
